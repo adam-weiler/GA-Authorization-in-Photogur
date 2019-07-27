@@ -6,7 +6,8 @@ class Picture(models.Model):
     url = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.title
+        return f'title={self.title}, artist={self.artist}, url={self.url}'
+        return f'<img src=\'{self.url}\' alt=\'{self.title}\' />'
 
 class Comment(models.Model):
     name = models.CharField(max_length=255)

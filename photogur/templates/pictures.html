@@ -5,6 +5,18 @@
     <title>Pictures</title>
   </head>
 <body>
-    <h1>Pictures1</h1>
+    <h1>Pictures</h1>
+      {% for image in gallery_images %}
+      <p><img src='{{ image.url }}' alt='{{ image.title }}' width='600px' /><br/>
+        <strong>{{ image.title }}</strong> by {{ image.artist }}<br/>
+        Number of Comments: {{ image.comments.count }}
+        
+        <ul>
+          {% for comment in image.comments.all %}
+          <li>'{{ comment.message }}' - {{ comment.name }}</li>
+          {% endfor %}
+        </ul>
+      </p>
+      {% endfor %}
 </body>
 </html>
