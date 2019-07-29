@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Pictures</h1>
+    <h2>Pictures</h2>
 		{% for image in gallery_images %}
 		<p><a href="{% url 'image_details' id=image.pk %}"><img src='{{ image.url }}' alt='{{ image.title }}' width='600px' /><br/>
 			<strong>{{ image.title }}</strong> by {{ image.artist }}</a><br/>
