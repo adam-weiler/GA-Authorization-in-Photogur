@@ -20,5 +20,5 @@ from photogur.views import * #Needed to refer to pages, redirects.
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('pictures/', pictures_page), #Page
-    path('picture/<int:id>', picture_show), #Dynamic route containing the primary key of the selected picture.
+    path('picture/<int:id>', picture_show, name='image_details'), #Dynamic route containing the primary key of the selected picture.
 ]

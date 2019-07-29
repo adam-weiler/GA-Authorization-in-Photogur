@@ -5,8 +5,6 @@ from photogur.models import Picture, Comment #Importing the classes from models.
 def pictures_page(request): # Redirects to http://localhost:8000/home/
     context = { 'gallery_images': Picture.objects.all(), 'gallery_comments': Comment.objects.all() }
 
-    # context = { 'pictures': 7 }
-
     response = render(request, 'pictures.html', context)
     return HttpResponse(response)
 
