@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #CCC;
+    height: 50px;
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
+}
+
+footer {
+    background-color: #CCC;
+    height: 40px;
+}
