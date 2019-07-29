@@ -4,17 +4,17 @@
     Photogur - {{ picture.title }}
 {% endblock %}
 
+{% block main_class %}individual{% endblock %}
+
 {% block content %}
-    <!-- <article> -->
-        <h2>{{ picture.title }}</h2>
-    
-        <h3>By {{ picture.artist }}</h3>
+    <article>
+        <h2>{{ picture.title }} by {{ picture.artist }}</h3>
         <img src="{{ picture.url }}" alt="{{ picture.title }}" />
-        Number of Comments: {{ picture.comments.count }}
+        <p>Number of Comments: {{ picture.comments.count }}</p>
         <ul>
             {% for comment in picture.comments.all %}
-                <li>'{{ comment.message }}' - {{ comment.name }}</li>
+                <li>⦾ '{{ comment.message }}' - {{ comment.name }}</li>
             {% endfor %}
         </ul>
-    <!-- </article> -->
+    </article>
 {% endblock %}

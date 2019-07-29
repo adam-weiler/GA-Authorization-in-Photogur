@@ -7,10 +7,10 @@
 {% block main_class %}gallery{% endblock %}
 
 {% block content %}
-		{% for image in gallery_images %}
+	{% for image in gallery_images %}
 		<article>
 			<a href="{% url 'image_details' id=image.pk %}"><img src='{{ image.url }}' alt='{{ image.title }}' /><br/>
-			<p>{{ image.title }} by {{ image.artist }}</p></a>
+			<strong></strong>{{ image.title }}</strong> by {{ image.artist }}</a><br/>
 		</article>
-		{% endfor %}
+	{% endfor %}
 {% endblock %}
