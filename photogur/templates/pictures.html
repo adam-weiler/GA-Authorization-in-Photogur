@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Pictures</title>
-  </head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}
+    Photogur
+{% endblock %}
+
+{% block content %}
     <h1>Pictures</h1>
-      {% for image in gallery_images %}
-      <p><a href="{% url 'image_details' id=image.pk %}"><img src='{{ image.url }}' alt='{{ image.title }}' width='600px' /><br/>
-        <strong>{{ image.title }}</strong> by {{ image.artist }}</a><br/>
-        Number of Comments: {{ image.comments.count }}
-      </p>
-      {% endfor %}
-</body>
-</html>
+		{% for image in gallery_images %}
+		<p><a href="{% url 'image_details' id=image.pk %}"><img src='{{ image.url }}' alt='{{ image.title }}' width='600px' /><br/>
+			<strong>{{ image.title }}</strong> by {{ image.artist }}</a><br/>
+			Number of Comments: {{ image.comments.count }}
+		</p>
+		{% endfor %}
+{% endblock %}
