@@ -15,8 +15,10 @@
     <header>
         <h1>Photogur</h1>
     </header>
-    {% block content %}
-    {% endblock %}
-    <footer>© Adam Weiler - 2019</footer>
+    <main class="{% block main_class %}{% endblock %}">
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer><p>© Adam Weiler - 2019</p></footer>
 </body>
 </html>
