@@ -8,7 +8,7 @@
 
 {% block content %}
     <article>
-        <h2>{{ picture.title }} by {{ picture.artist }}</h3>
+        <h2>{{ picture.title }} by {{ picture.artist }}</h2>
         <img src="{{ picture.url }}" alt="{{ picture.title }}" />
         <p>Number of Comments: {{ picture.comments.count }}</p>
         <ul>

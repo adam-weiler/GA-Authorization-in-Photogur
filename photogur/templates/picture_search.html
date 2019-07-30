@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Photogur - Search
+{% endblock %}
+
+        {% block main_class %}individual{% endblock %}
+
+{% block content %}
+    <h2>Search results: {{pictures.count}}</h2>
+
+    {% for picture in pictures %}
+        <article>
+            <img src="{{ picture.url }}" alt="{{ picture.title }}" width="350px" />
+            <i>{{ picture.title }}</i> by {{ picture.artist }}
+        </article>
+    {% endfor %}
+{% endblock %}

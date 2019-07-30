@@ -63,15 +63,18 @@ ul {
 }
 
 footer {
-    margin-top: 35px;
+    /* margin-top: 35px; */
+    bottom: 0;
+    width: 100%;
+    position: fixed;
     background-color: #363636;
     color: #fbfbed;
-    height: 38px;
+    height: 48px;
     text-align: center;
 }
 
 footer p {
-    padding-top: 10px;
+    /* padding-top: 10px; */
 }
 
 @media only screen and (max-width: 992px) {
