@@ -35,13 +35,8 @@ def create_comment(request):
     new_comment.picture = picture #Sets the foreign key as the picture object.
     
     new_comment.save() #Saves the new_comment to the database.
-    # return HttpResponseRedirect('/picture/') #Why does this redirect instead of render?
-
+    
     context = {'picture': picture}
     response = render(request, 'picture.html', context)
-    return HttpResponse(response)
-
-
-# picture = Picture.objects.get(pk=id)
-
-    #redirect back to picture page      Don't render
+    return HttpResponse(response) #Why should this redirect instead of render?
+    # return HttpResponseRedirect('/picture/') 
