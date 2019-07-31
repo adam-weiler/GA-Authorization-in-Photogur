@@ -11,7 +11,7 @@
 
     {% for picture in pictures %}
         <article>
-            <img src="{{ picture.url }}" alt="{{ picture.title }}" width="350px" />
+            <a href="{% url 'image_details' id=picture.pk %}"><img src='{{ picture.url }}' alt='{{ picture.title }}' width="350px" /></a><br/>
             <i>{{ picture.title }}</i> by {{ picture.artist }}
         </article>
     {% endfor %}

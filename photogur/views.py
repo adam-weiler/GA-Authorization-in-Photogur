@@ -21,9 +21,27 @@ def picture_search(request):
     context = {'pictures': search_results, 'query': query}
 
     #Adding these things
-
-
-
-
     response = render(request, 'picture_search.html', context)
     return HttpResponse(response)
+
+def create_comment(request):
+    new_comment = Comment() #Instantiates a new_comment.
+    picture_id = request.POST['picture'] #Retrieves the picture id from the POST request. (It's hidden.)
+    picture = Picture.objects.get(pk=picture_id) #Gets the entire picture object.
+
+    new_comment.name = request.POST['name'] #Retrieves the name from the POST request.
+    new_comment.message = request.POST['message'] #Retrieves the message from the POST request.
+    # breakpoint()
+    new_comment.picture = picture #Sets the foreign key as the picture object.
+    
+    new_comment.save() #Saves the new_comment to the database.
+    # return HttpResponseRedirect('/picture/') #Why does this redirect instead of render?
+
+    context = {'picture': picture}
+    response = render(request, 'picture.html', context)
+    return HttpResponse(response)
+
+
+# picture = Picture.objects.get(pk=id)
+
+    #redirect back to picture page      Don't render

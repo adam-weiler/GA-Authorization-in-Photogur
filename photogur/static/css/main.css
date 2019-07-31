@@ -28,6 +28,7 @@ main {
     margin: 0 auto;
     max-width: 1276px;
     text-align: center;
+    margin-bottom: 200px;
 }
 
 main.gallery {
