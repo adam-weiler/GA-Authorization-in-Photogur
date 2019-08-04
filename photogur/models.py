@@ -17,7 +17,7 @@ class Comment(models.Model):
     picture = models.ForeignKey(Picture, on_delete=models.CASCADE, related_name='comments')
 
     def __str__(self):
-        return self.name
+        return f'\'{self.message}\' - {self.name}'
 
 class CommentForm(ModelForm):
     class Meta:

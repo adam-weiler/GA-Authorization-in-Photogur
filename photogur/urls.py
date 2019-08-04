@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin #Needed to get the Admin section.
 from django.urls import path
-from photogur.views import * #Needed to refer to pages, redirects.
+from photogur import views #Needed to refer to pages, redirects.
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('comments/new', create_comment, name='create_comment'),
-    path('pictures/', pictures_page), #Page
-    path('picture/<int:id>', picture_show, name='image_details'), #Dynamic route containing the primary key of the selected picture.
-    path('search', picture_search, name='picture_search'),
+    path('comments/new/', views.create_comment, name='create_comment'),
+    # path('picture/<int:id>', views.create_comment, name='create_comment'),
+    path('pictures/', views.pictures_page, name="show_all"), #Page
+    path('picture/<int:id>', views.picture_show, name='image_details'), #Dynamic route containing the primary key of the selected picture.
+    path('search', views.picture_search, name='picture_search'),
 ]

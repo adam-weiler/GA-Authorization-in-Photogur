@@ -15,21 +15,12 @@
             {% csrf_token %}
             <input type="hidden" name="picture" value="{{ picture.pk }}">
 
-            <div>
-                <label for="">Name:</label>
-                <input id="name" type="text" name="name" />
-            </div>
-            <div>
-                <label for="">Message:</label>
-                <input id="message" type="text" name="message" />
-            </div>
+            {{ form.as_p }}
+
             <div>
                 <input type="submit" name="submit" value="Submit">
                 <input type="reset" name="reset" value="Reset">
             </div>
-
-            {{ form.as_p }}
-
         </form>
         <p>Number of Comments: {{ picture.comments.count }}</p>
         <ul>

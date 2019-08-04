@@ -37,6 +37,10 @@ main.gallery {
     grid-gap: 20px;
 }
 
+main.individual {
+    margin-bottom: 100px;
+}
+
 main.individual article {
     text-align: center;
 }
