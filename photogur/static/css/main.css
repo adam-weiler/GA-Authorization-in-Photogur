@@ -27,7 +27,6 @@ h2 {
 main {
     margin: 0 auto;
     max-width: 1276px;
-    text-align: center;
     margin-bottom: 200px;
 }
 
@@ -35,23 +34,30 @@ main.gallery {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 20px;
-}
-
-main.individual {
-    margin-bottom: 100px;
-}
-
-main.individual article {
     text-align: center;
+    /* background-color: lightblue; */
 }
 
-article {
+main.search_results {
+    margin: 5px 5px 100px 5px;
+    /* background-color: lightskyblue; */
+}
+
+
+
+main.gallery article {
     /* display: inline-block; */
     vertical-align: top;
     /* max-width: 400px; */
     border: 1px solid #ededed;
     padding: 5px;
     text-align: left;
+}
+
+main.search_results article {
+    padding: 50px;
+    text-align: left;
+    border-top: 1px solid #ededed;
 }
 
 a {
@@ -88,11 +94,22 @@ footer p {
 
 @media only screen and (max-width: 992px) {
     main {
-        margin: auto 60px; 
+        margin: auto 60px;
     }
 
     main.gallery {
         grid-template-columns: 1fr 1fr;
+        /* background-color: pink; */
+    }
+
+    main.search_results {
+        margin: 5px;
+        /* background-color: red; */
+    }
+
+    main.search_results article {
+        text-align: left;
+        border-top: 1px solid #ededed;
     }
 }
 
@@ -103,5 +120,21 @@ footer p {
 
     main.gallery {
         grid-template-columns: 1fr;
+        /* background-color: lightgreen; */
+    }
+
+    main.search_results {
+        /* background-color: blue; */
+    }
+
+    main.search_results article img {
+        max-width: 80%;
+    }
+}
+
+
+@media only screen and (max-width: 432px) {
+    main.search_results {
+        /* background-color: fuchsia; */
     }
 }

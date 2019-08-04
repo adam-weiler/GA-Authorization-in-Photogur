@@ -4,14 +4,15 @@
     Photogur - Search
 {% endblock %}
 
-        {% block main_class %}individual{% endblock %}
+{% block main_class %}search_results{% endblock %}
 
 {% block content %}
     <h2>Search results: <span class="underline">{{pictures.count}}</span></h2>
 
     {% for picture in pictures %}
         <article>
-            <a href="{% url 'image_details' id=picture.pk %}"><img src='{{ picture.url }}' alt='{{ picture.title }}' width="350px" /></a><br/>
+            <a href="{% url 'image_details' id=picture.pk %}"><img src='{{ picture.url }}' alt='{{ picture.title }}' width="300px" /></a>
+            <br/>
             <i>{{ picture.title }}</i> by {{ picture.artist }}
         </article>
     {% endfor %}
