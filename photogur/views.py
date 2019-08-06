@@ -1,7 +1,9 @@
 from django.http import HttpResponse, HttpResponseRedirect #Needed to return an HttpResponse.
 from django.urls import reverse
 from django.shortcuts import redirect, render #Needed to render the page.
-from photogur.models import Picture, CommentForm, Comment #Importing the classes from models.py file.
+from photogur.forms import CommentForm, LoginForm  # ... others?
+from photogur.models import Picture, Comment #Importing the classes from models.py file.
+
 
 def pictures_page(request): #Loads all the pictures.
     context = { 'gallery_images': Picture.objects.all(), 'gallery_comments': Comment.objects.all() }
@@ -82,3 +84,12 @@ def create_comment(request): #Saving a comment in the database.
 
     # return render(request, "picture.html", context) #This is returning to the image page but the form disappears.
     return HttpResponseRedirect(f'/picture/{picture_id}') #Why should this redirect instead of render?
+
+
+def login_view(request):
+    form = LoginForm()
+    http_response = render(request, 'login.html', {
+        'form': form
+    })
+    return HttpResponse(http_response)
+

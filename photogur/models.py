@@ -1,5 +1,5 @@
 from django.db import models
-from django.forms import ModelForm
+
 
 class Picture(models.Model):
     title = models.CharField(max_length=255)
@@ -18,8 +18,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'\'{self.message}\' - {self.name}'
-
-class CommentForm(ModelForm):
-    class Meta:
-        model = Comment
-        fields = ['name', 'message']
