@@ -1,9 +1,10 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse, HttpResponseRedirect #Needed to return an HttpResponse.
 from django.urls import reverse
 from django.shortcuts import redirect, render #Needed to render the page.
-from photogur.forms import CommentForm, LoginForm  # ... others?
+from photogur.forms import CommentForm, LoginForm, PictureForm  # ... others?
 from photogur.models import Picture, Comment #Importing the classes from models.py file.
 
 
@@ -125,4 +126,27 @@ def signup(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/pictures')
+
+
+@login_required
+def new_picture(request):
+    form = PictureForm(request.POST)
+
+    if form.is_valid():
+        new_picture = form.save(commit=False)
+        new_picture.user = request.user
+        new_picture.save()
+
+        return redirect(reverse('show_all'))
+    else:  # Else sends user back to picture_form page.
+        return render(request,'picture_form.html', {
+            'form': form
+        })
+
+    #save to database
+
+
+    # render pictureform
+
+
 

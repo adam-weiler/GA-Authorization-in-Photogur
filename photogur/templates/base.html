@@ -21,6 +21,7 @@
             <input type="submit" value="Search" />
         </form>
         {% if request.user.is_authenticated %}
+            <li><a href="{% url 'new_picture' %}" >Submit a new picture</a></li>
             <li><a href="{% url 'logout' %}" >Log out</a></li>
         {% else %}
             <li><a href="{% url 'login' %}" >Login</a></li>

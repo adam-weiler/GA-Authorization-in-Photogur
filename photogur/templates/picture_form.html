@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    - New Picture
+{% endblock %}
+
+{% block content %}
+    <section>
+        <form action = "{% url 'new_picture' %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" name="submit" value="Submit">
+            <input type="reset" name="reset" value="Reset">
+        </form>
+    </section>
+{% endblock %}

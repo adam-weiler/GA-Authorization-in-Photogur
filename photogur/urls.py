@@ -19,12 +19,14 @@ from photogur import views #Needed to refer to pages, redirects.
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('comments/new/', views.create_comment, name='create_comment'),
+    path('pictures/comments/new/', views.create_comment, name='create_comment'),
     # path('picture/<int:id>', views.create_comment, name='create_comment'),
-    path('login/', views.login_view, name="login"),
-    path('logout/', views.logout_view, name="logout"),
+    path('accounts/login/', views.login_view, name="login"),
+    path('accounts/logout/', views.logout_view, name="logout"),
     path('pictures/', views.pictures_page, name="show_all"), #Page
     path('picture/<int:id>', views.picture_show, name='image_details'), #Dynamic route containing the primary key of the selected picture.
-    path('search', views.picture_search, name='picture_search'),
-    path('signup/', views.signup, name='signup'),
+    path('pictures/search', views.picture_search, name='picture_search'),
+    path('accounts/signup/', views.signup, name='signup'),
+
+    path('pictures/new', views.new_picture, name='new_picture'),  # Form to create a new picture.
 ]
