@@ -10,7 +10,8 @@
 	{% for image in gallery_images %}
 		<article>
 			<a href="{% url 'image_details' id=image.pk %}"><img src='{{ image.url }}' alt='{{ image.title }}' /><br/>
-			<strong></strong>{{ image.title }}</strong> by {{ image.artist }}</a><br/>
+			<strong></strong>{{ image.title }}</strong> by {{ image.artist }}</a>
+			<br/>Uploaded by: {{ image.user }}
 		</article>
 	{% endfor %}
 {% endblock %}
