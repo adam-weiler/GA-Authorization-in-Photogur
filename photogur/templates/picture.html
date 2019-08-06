@@ -12,12 +12,9 @@
         <h3>Uploaded by: {{ picture.user }}</h3>
         <img src="{{ picture.url }}" alt="{{ picture.title }}" />
         <h3>Leave a comment:</h3>
-        <form action="{% url 'create_comment' %}" method="post">
+        <form action="{% url 'create_comment' picture_id=picture.pk %}" method="post">
             {% csrf_token %}
-            <input type="hidden" name="picture" value="{{ picture.pk }}">
-
             {{ form.as_p }}
-
             <div>
                 <input type="submit" name="submit" value="Submit">
                 <input type="reset" name="reset" value="Reset">
