@@ -9,6 +9,7 @@ class CommentForm(ModelForm):
 
 
 class LoginForm(ModelForm):
-    username = CharField(label="User Name", max_length=64)
-    password = CharField(widget=PasswordInput())
+    class Meta:
+        username = CharField(label="User Name", max_length=64)
+        password = CharField(widget=PasswordInput())
 
