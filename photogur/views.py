@@ -7,25 +7,19 @@ from photogur.models import Picture, Comment #Importing the classes from models.
 
 
 def pictures_page(request): #Loads all the pictures.
-    context = { 'gallery_images': Picture.objects.all(), 'gallery_comments': Comment.objects.all() }
-
-    response = render(request, 'pictures.html', context)
-    return HttpResponse(response)
-
-
+    return render(request, 'pictures.html', { 
+        'gallery_images': Picture.objects.all(), 
+        'gallery_comments': Comment.objects.all() 
+    })
 
 
 def picture_show(request, id): #Loads an individual picture. #This is the Edit function.
     picture = Picture.objects.get(pk=id)
 
-    form = CommentForm(instance=picture)
-
-    context = {'picture': picture, "form": form}
-
-    response = render(request, 'picture.html', context)
-    return HttpResponse(response)
-
-
+    return render(request, 'picture.html', {
+        'picture': picture, 
+        "form": CommentForm(instance=picture)
+    })
 
 
 def picture_search(request): #Loads the search results.
@@ -87,7 +81,7 @@ def create_comment(request): #Saving a comment in the database.
     return HttpResponseRedirect(f'/picture/{picture_id}') #Why should this redirect instead of render?
 
 
-def login_view(request):
+def login_view(request):  
     if request.method == 'POST':
         form = LoginForm(request.POST)
 
@@ -98,16 +92,15 @@ def login_view(request):
 
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect('pictures')
+                return HttpResponseRedirect('/pictures')
             else:
                 form.add_error('username', 'Login failed')
     else:
         form = LoginForm()
 
-    http_response = render(request, 'login.html', {
+    return render(request, 'login.html', {
         'form': form
     })
-    return HttpResponse(http_response)
 
 
 def logout_view(request):
