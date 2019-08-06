@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, HttpResponseRedirect #Needed to return an HttpResponse.
 from django.urls import reverse
 from django.shortcuts import redirect, render #Needed to render the page.
@@ -87,7 +88,22 @@ def create_comment(request): #Saving a comment in the database.
 
 
 def login_view(request):
-    form = LoginForm()
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            pw = form.cleaned_data['password']
+            user = authenticate(username=username, password=pw)
+
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect('pictures')
+            else:
+                form.add_error('username', 'Login failed')
+    else:
+        form = LoginForm()
+
     http_response = render(request, 'login.html', {
         'form': form
     })
