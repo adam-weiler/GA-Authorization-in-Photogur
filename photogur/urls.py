@@ -26,4 +26,5 @@ urlpatterns = [
     path('pictures/', views.pictures_page, name="show_all"), #Page
     path('picture/<int:id>', views.picture_show, name='image_details'), #Dynamic route containing the primary key of the selected picture.
     path('search', views.picture_search, name='picture_search'),
+    path('signup/', views.signup, name='signup'),
 ]

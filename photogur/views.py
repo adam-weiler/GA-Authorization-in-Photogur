@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse, HttpResponseRedirect #Needed to return an HttpResponse.
 from django.urls import reverse
 from django.shortcuts import redirect, render #Needed to render the page.
@@ -99,6 +100,24 @@ def login_view(request):
         form = LoginForm()
 
     return render(request, 'login.html', {
+        'form': form
+    })
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return HttpResponseRedirect('/pictures')
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'signup.html', {
         'form': form
     })
 
