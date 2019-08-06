@@ -27,7 +27,16 @@ def picture_show(request, id): #Loads an individual picture. #This is the Edit f
 
 def picture_search(request): #Loads the search results.
     query = request.GET['query']
-    search_results = Picture.objects.filter(artist=query)
+    # search_results = Picture.objects.filter(artist=query)
+    # matches = 'artist' | 'title' | 'url'
+    # search_results = Picture.objects.filter(Q(artist__icontains=query) | Q(title__icontains=query) | Q(url__icontains=query))
+    search_results = Picture.objects.filter(
+        artist=query
+        ).union(
+            Picture.objects.filter(title=query)
+        ).union(
+            Picture.objects.filter(artist=query)
+        )
 
     context = {'pictures': search_results, 'query': query}
 
