@@ -30,12 +30,12 @@ def picture_search(request): #Loads the search results.
     # search_results = Picture.objects.filter(artist=query)
     # matches = 'artist' | 'title' | 'url'
     # search_results = Picture.objects.filter(Q(artist__icontains=query) | Q(title__icontains=query) | Q(url__icontains=query))
-    search_results = Picture.objects.filter(
-        artist=query
+    search_results = Picture.objects.filter(  # Checks if artist, title, or URL contains word.
+        artist__contains=query
         ).union(
-            Picture.objects.filter(title=query)
+            Picture.objects.filter(title__contains=query)
         ).union(
-            Picture.objects.filter(artist=query)
+            Picture.objects.filter(url__contains=query)
         )
 
     context = {'pictures': search_results, 'query': query}
