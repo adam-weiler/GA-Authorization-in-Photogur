@@ -91,7 +91,7 @@ def signup(request):
     })
 
 
-# @login_required
+# @login_required  # This is not necessary.
 def logout_view(request):
     logout(request)
     return redirect(reverse('show_all'))
