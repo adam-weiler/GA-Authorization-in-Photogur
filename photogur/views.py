@@ -15,8 +15,8 @@ def pictures_page(request): #Loads all the pictures.
     })
 
 
-def picture_show(request, id): #Loads an individual picture.
-    picture = Picture.objects.get(pk=id)
+def picture_show(request, picture_id): #Loads an individual picture.
+    picture = Picture.objects.get(pk=picture_id)
 
     return render(request, 'picture.html', {
         'picture': picture, 
@@ -41,25 +41,14 @@ def picture_search(request): #Loads the search results.
 
 
 def create_comment(request, picture_id): #Saving a comment in the database.
-    # breakpoint()
-    # picture_id = request.POST['picture'] #Retrieves the picture id from the POST request.
-    # breakpoint()
     picture = Picture.objects.get(pk=picture_id) #Gets the entire picture object.
-    
     form = CommentForm(request.POST)
     new_comment = form.save(commit=False)
-    
-    new_comment.picture = picture #Adding this line
+    new_comment.picture = picture
     new_comment.save()
 
-    context = {'picture':picture}
-    # return redirect(reverse('pictures/' + picture_id))
-
-    # return render(request, "picture.html", context) #This is returning to the image page but the form disappears.
-  
-
-    # return HttpResponseRedirect('/pictures')
-    return HttpResponseRedirect(f'/pictures/{picture_id}')  #Why should this redirect instead of render?
+    # return HttpResponseRedirect(f'/pictures/{picture_id}')
+    return redirect(reverse('image_details', kwargs={'picture_id':picture_id}))
 
 
 def login_view(request):  
@@ -73,7 +62,7 @@ def login_view(request):
 
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect('/pictures')
+                return redirect(reverse('show_all'))
             else:
                 form.add_error('username', 'Login failed')
     else:
@@ -93,7 +82,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return HttpResponseRedirect('/pictures')
+            return redirect(reverse('show_all'))
     else:
         form = UserCreationForm()
 
@@ -102,9 +91,10 @@ def signup(request):
     })
 
 
+# @login_required
 def logout_view(request):
     logout(request)
-    return HttpResponseRedirect('/pictures')
+    return redirect(reverse('show_all'))
 
 
 @login_required
