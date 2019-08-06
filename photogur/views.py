@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect #Needed to return an HttpResponse.
 from django.urls import reverse
 from django.shortcuts import redirect, render #Needed to render the page.
@@ -108,4 +108,9 @@ def login_view(request):
         'form': form
     })
     return HttpResponse(http_response)
+
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/pictures')
 

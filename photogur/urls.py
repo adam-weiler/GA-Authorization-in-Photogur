@@ -22,6 +22,7 @@ urlpatterns = [
     path('comments/new/', views.create_comment, name='create_comment'),
     # path('picture/<int:id>', views.create_comment, name='create_comment'),
     path('login/', views.login_view, name="login"),
+    path('logout/', views.logout_view, name="logout"),
     path('pictures/', views.pictures_page, name="show_all"), #Page
     path('picture/<int:id>', views.picture_show, name='image_details'), #Dynamic route containing the primary key of the selected picture.
     path('search', views.picture_search, name='picture_search'),
