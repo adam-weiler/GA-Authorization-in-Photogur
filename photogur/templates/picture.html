@@ -10,6 +10,11 @@
     <article>
         <h2>{{ picture.title }} by {{ picture.artist }}</h2>
         <h3>Uploaded by: {{ picture.user }}</h3>
+
+        <p>
+            <a href="{% url 'picture_edit' picture_id=picture.pk %}">Edit</a>
+        </p>
+
         <img src="{{ picture.url }}" alt="{{ picture.title }}" />
         <h3>Leave a comment:</h3>
         <form action="{% url 'create_comment' picture_id=picture.pk %}" method="post">

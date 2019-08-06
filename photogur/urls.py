@@ -24,7 +24,10 @@ urlpatterns = [
     path('pictures/', views.pictures_page, name="show_all"), #Page
     path('pictures/<int:picture_id>', views.picture_show, name='image_details'),
     path('pictures/<int:picture_id>/comments/new', views.create_comment, name='create_comment'),
+    path('pictures/<int:picture_id>/edit', views.picture_edit, name='picture_edit'),
     path('pictures/search', views.picture_search, name='picture_search'),
     path('accounts/signup/', views.signup, name='signup'),
     path('pictures/new', views.new_picture, name='new_picture'),  # Form to create a new picture.
+
+
 ]

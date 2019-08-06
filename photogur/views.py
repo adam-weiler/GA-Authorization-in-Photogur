@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from photogur.forms import CommentForm, LoginForm, PictureForm  # ... others?
 from photogur.models import Picture, Comment
@@ -112,3 +112,13 @@ def new_picture(request):
             'form': form
         })
 
+
+@login_required
+def picture_edit(request, picture_id):
+    picture = get_object_or_404(Picture, pk=picture_id, user=request.user.pk)
+    # breakpoint()
+    
+    return render(request, 'picture_edit.html', {
+        'a': 'a', 
+        "form": 'B'
+    })
