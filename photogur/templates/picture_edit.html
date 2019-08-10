@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    - Edit page - {{ picture.title }} by {{ picture.artist }}
+- Edit page - {{ picture.title }} by {{ picture.artist }}
 {% endblock %}
 
-{% block main_class %}individual{% endblock %}
-
 {% block content %}
-    Edit or something
+    <section>
+        <form action = "{% url 'picture_edit' picture_id %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" name="submit" value="Submit">
+        </form>
+    </section>
 {% endblock %}

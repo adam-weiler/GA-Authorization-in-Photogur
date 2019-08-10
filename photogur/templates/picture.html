@@ -11,9 +11,11 @@
         <h2>{{ picture.title }} by {{ picture.artist }}</h2>
         <h3>Uploaded by: {{ picture.user }}</h3>
 
+        {% if request.user == picture.user %}
         <p>
             <a href="{% url 'picture_edit' picture_id=picture.pk %}">Edit</a>
         </p>
+        {% endif %}
 
         <img src="{{ picture.url }}" alt="{{ picture.title }}" />
         <h3>Leave a comment:</h3>

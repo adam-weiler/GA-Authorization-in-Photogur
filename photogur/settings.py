@@ -120,6 +120,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#I'm adding this line:
+# We're using the "name" of our login page URL, instead of repeating the URL itself.
 LOGIN_URL = 'login'
 

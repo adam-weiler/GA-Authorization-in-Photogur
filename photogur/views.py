@@ -98,7 +98,7 @@ def logout_view(request):
 
 
 @login_required
-def new_picture(request):
+def new_picture_form(request):
     form = PictureForm(request.POST)
 
     if form.is_valid():
@@ -115,10 +115,20 @@ def new_picture(request):
 
 @login_required
 def picture_edit(request, picture_id):
-    picture = get_object_or_404(Picture, pk=picture_id, user=request.user.pk)
-    # breakpoint()
-    
-    return render(request, 'picture_edit.html', {
-        'a': 'a', 
-        "form": 'B'
-    })
+    picture = get_object_or_404(Picture, pk=picture_id, user=request.user.pk) 
+
+    form = PictureForm(request.POST)
+
+    if form.is_valid():
+        edit_picture = form.save(commit=False)
+        edit_picture.user = request.user
+        edit_picture.id = picture_id
+        edit_picture.save()
+        return redirect(reverse('image_details', kwargs={'picture_id':picture_id}))
+    else:
+        return render(request, 'picture_edit.html', {
+            'picture': picture,
+            'picture_id': picture_id,
+            'form': PictureForm(instance=picture)
+        })
+
