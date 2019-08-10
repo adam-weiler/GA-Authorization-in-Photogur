@@ -51,7 +51,10 @@ def create_comment(request, picture_id): #Saving a comment in the database.
     return redirect(reverse('image_details', kwargs={'picture_id':picture_id}))
 
 
-def login_view(request):  
+def login_view(request):
+    if request.user.is_authenticated:
+        return redirect(reverse('show_all'))
+    
     if request.method == 'POST':
         form = LoginForm(request.POST)
 
@@ -74,6 +77,8 @@ def login_view(request):
 
 
 def signup(request):
+    if request.user.is_authenticated:
+        return redirect(reverse('show_all'))
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
