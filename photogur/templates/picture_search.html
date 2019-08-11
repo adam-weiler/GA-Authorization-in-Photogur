@@ -4,16 +4,16 @@
     - Search Results
 {% endblock %}
 
-{% block main_class %}search_results{% endblock %}
+{% block main_class %}individual{% endblock %}
 
 {% block content %}
     <h2>Search results: <span class="underline">{{pictures.count}}</span></h2>
 
     {% for picture in pictures %}
-        <article>
-            <a href="{% url 'image_details' id=picture.pk %}"><img src='{{ picture.url }}' alt='{{ picture.title }}' width="300px" /></a>
+        <section>
+            <a href="{% url 'picture_details' picture_id=picture.pk %}"><img src='{{ picture.url }}' alt='{{ picture.title }}' width="300px" /></a>
             <br/>
             <i>{{ picture.title }}</i> by {{ picture.artist }}
-        </article>
+        </section>
     {% endfor %}
 {% endblock %}

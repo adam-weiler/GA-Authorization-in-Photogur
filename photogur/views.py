@@ -8,6 +8,9 @@ from photogur.forms import CommentForm, LoginForm, PictureForm  # ... others?
 from photogur.models import Picture, Comment
 
 
+def root(request):
+    return redirect(reverse('show_all'))
+
 def pictures_page(request): #Loads all the pictures.
     return render(request, 'pictures.html', { 
         'gallery_images': Picture.objects.all(), 
@@ -15,7 +18,7 @@ def pictures_page(request): #Loads all the pictures.
     })
 
 
-def picture_show(request, picture_id): #Loads an individual picture.
+def picture_details(request, picture_id): #Loads an individual picture.
     picture = Picture.objects.get(pk=picture_id)
 
     return render(request, 'picture.html', {
@@ -39,8 +42,10 @@ def picture_search(request): #Loads the search results.
         'query': query
     })
 
+    # return redirect(reverse('picture_details', kwargs={'pictures':search_results, 'query':query}))
 
-def create_comment(request, picture_id): #Saving a comment in the database.
+
+def new_comment(request, picture_id): #Saving a comment in the database.
     picture = Picture.objects.get(pk=picture_id) #Gets the entire picture object.
     form = CommentForm(request.POST)
     new_comment = form.save(commit=False)
@@ -48,7 +53,7 @@ def create_comment(request, picture_id): #Saving a comment in the database.
     new_comment.save()
 
     # return HttpResponseRedirect(f'/pictures/{picture_id}')
-    return redirect(reverse('image_details', kwargs={'picture_id':picture_id}))
+    return redirect(reverse('picture_details', kwargs={'picture_id':picture_id}))
 
 
 def login_view(request):

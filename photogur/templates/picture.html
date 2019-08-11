@@ -7,7 +7,7 @@
 {% block main_class %}individual{% endblock %}
 
 {% block content %}
-    <article>
+    <section>
         <h2>{{ picture.title }} by {{ picture.artist }}</h2>
         <h3>Uploaded by: {{ picture.user }}</h3>
 
@@ -19,9 +19,11 @@
 
         <img src="{{ picture.url }}" alt="{{ picture.title }}" />
         <h3>Leave a comment:</h3>
-        <form action="{% url 'create_comment' picture_id=picture.pk %}" method="post">
+        <form action="{% url 'new_comment' picture_id=picture.pk %}" method="post">
             {% csrf_token %}
-            {{ form.as_p }}
+            <table>
+                {{ form.as_table }}
+            </table>
             <div>
                 <input type="submit" name="submit" value="Submit">
                 <input type="reset" name="reset" value="Reset">
@@ -33,5 +35,5 @@
                 <li>⦾ '{{ comment.message }}' - {{ comment.name }}</li>
             {% endfor %}
         </ul>
-    </article>
+    </section>
 {% endblock %}

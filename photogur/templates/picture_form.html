@@ -4,11 +4,17 @@
     - New Picture
 {% endblock %}
 
+{% block main_class %}individual{% endblock %}
+
 {% block content %}
+    <h2>Submit a new picture:</h2>
+
     <section>
         <form action = "{% url 'new_picture_form' %}" method="POST">
             {% csrf_token %}
-            {{ form.as_p }}
+            <table>
+                {{ form.as_table }}
+            </table>
             <input type="submit" name="submit" value="Submit">
             <input type="reset" name="reset" value="Reset">
         </form>
